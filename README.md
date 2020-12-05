@@ -6,6 +6,11 @@ data and UI state. Judge the success of this attempt for yourself.
 
 ## Example
 
+Here follows an example of a fully-functioning calculator app written using this
+API.
+
+# <img src="misc/example.png" alt="It's a calculator!" text-align="center"/>
+
 ```rust
 #[derive(Default)]
 struct Data {
@@ -81,14 +86,13 @@ let ui = List::<Data>::vertical()
 Window::new(ui).run(Data::default())
 ```
 
-# <img src="misc/example.png" alt="It's a calculator!" text-align="center"/>
-
 ## Design
 
 Here follows a brief and very rough description of the philosophy underpinning
 the API.
 
 - UIs are composed of widgets that sit in a tree hierarchy
+- Widget trees are created using an expressive-yet-intuitive builder pattern
 - Events are recursively passed down from parent widgets to child widgets
 - Children may request various layout properties from their parents (expand,
   minimum size, etc.)
@@ -104,3 +108,5 @@ the API.
 - 'Transformations' such as padding are generic across widgets and use widget
   wrapper types
 - The widget tree should never be recreated from scratch to improve performance
+- Rendering is performed on a canvas that emits simple primitives (lines,
+  rectanges, text, etc.) that allow for easy porting to many backends
