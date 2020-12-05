@@ -81,4 +81,4 @@ let ui = List::<Data>::vertical()
 Window::new(ui).run(Data::default())
 ```
 
-# <img src="misc/example.png" alt="It's a calculator!" width="100%"/>
+# <img src="misc/example.png" alt="It's a calculator!" text-align="center"/>
