@@ -82,3 +82,25 @@ Window::new(ui).run(Data::default())
 ```
 
 # <img src="misc/example.png" alt="It's a calculator!" text-align="center"/>
+
+## Design
+
+Here follows a brief and very rough description of the philosophy underpinning
+the API.
+
+- UIs are composed of widgets that sit in a tree hierarchy
+- Events are recursively passed down from parent widgets to child widgets
+- Children may request various layout properties from their parents (expand,
+  minimum size, etc.)
+- The data that the UI represents is independent of the UI and should, where
+  possible, not require special sauce to be reflected in the UI (i.e: if you
+  want to create a list, you just use a `Vec<T>` in the data model)
+- Widget trees may be constructed hierarchically such that each part of the UI
+  can only 'see' part of the underlying data model. It is possible to integrate
+  sub-trees into a parent in a modular way by providing a mapping between the
+  parent's data model and the child's data model
+- The API for creating widgets that have state (i.e: text boxes, toggle buttons)
+  is consistent
+- 'Transformations' such as padding are generic across widgets and use widget
+  wrapper types
+- The widget tree should never be recreated from scratch to improve performance
