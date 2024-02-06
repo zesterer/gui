@@ -104,7 +104,10 @@ impl std::ops::Add for Span {
     fn add(self, other: Self) -> Self {
         Self {
             min: self.min + other.min,
-            max: self.max.zip_with(other.max, |s, o| s + o),
+            max: match (self.max, other.max) {
+                (Some(s), Some(o)) => Some(s + o),
+                (_, _) => None,
+            },
         }
     }
 }

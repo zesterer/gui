@@ -94,9 +94,9 @@ impl<'a, D> Window<'a, D> {
                 //canvas.pixel_size = 4;
 
                 {
-                    let cx = Context::new(&surf);
+                    let cx = Context::new(&surf).unwrap();
                     let mut rcx = CairoRenderContext::new(&cx);
-                    rcx.clear(piet::Color::grey(0.5));
+                    rcx.clear(None, piet::Color::grey(0.5));
 
                         for prim in prim_canvas.primitives {
                         match prim {
@@ -142,7 +142,7 @@ impl<'a, D> Window<'a, D> {
                                 });
 
                                 let layout = text_state
-                                    .new_text_layout(&text)
+                                    .new_text_layout(text)
                                     .text_color(piet::Color::rgba8(col.r, col.g, col.b, col.a))
                                     .default_attribute(TextAttribute::FontSize(16.0))
                                     .build()
@@ -166,7 +166,7 @@ impl<'a, D> Window<'a, D> {
                     }
                 }
 
-                self.win.update_with_buffer(unsafe { std::mem::transmute(surf.get_data().unwrap().deref()) }, w, h).unwrap();
+                self.win.update_with_buffer(unsafe { std::mem::transmute(surf.data().unwrap().deref()) }, w, h).unwrap();
 
                 redraw = false;
             } else {

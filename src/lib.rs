@@ -1,5 +1,3 @@
-#![feature(option_zip)]
-
 pub mod backend;
 pub mod canvas;
 pub mod draw;

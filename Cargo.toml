@@ -8,8 +8,11 @@ edition = "2018"
 
 [dependencies]
 vek = "0.12"
-minifb = "0.18"
+minifb = "0.25"
 andrew = "0.3"
-piet = "0.2.0-pre1"
-piet-cairo = "0.2.0-pre1"
-cairo-rs = { version = "0.9.1", default-features = false }
+piet = "0.6.2"
+piet-cairo = "0.6.2"
+cairo-rs = { version = "0.16.7", default-features = false }
+
+[profile.dev]
+opt-level = 2
